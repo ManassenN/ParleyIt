@@ -43,7 +43,7 @@ class Processor():
         return transaction_id
 
 
-    # downloads the transactions info report from the last 5 days
+    # Downloads the transactions info report from the last 5 days
     def download_report(self):
         today_day_date =int(datetime.now().strftime("%d"))
         valid_transactions = []
