@@ -52,7 +52,7 @@ def perform_advance(dst_account,amount):
 #     account1 = Account(num1,amount1)
 #     account2 = Account(num1, amount2)
 #
-#     processor.perform_transaction(account1,account2,AMOUNT,'direct')
+#     processor.perform_transaction(account1,account2,AMOUNT,'Debit')
 #
 #
 # #Testing The Download Report....
