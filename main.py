@@ -5,11 +5,15 @@ from Account import *
 from datetime import *
 
 # Define variables
+# I assumed that the system itself has a bank account, for managing all the accounts debits.
+  
 first_day = datetime.today()
 next_week_date = first_day + timedelta(days=6)
 transactions = []
 system_account = Account('SYSTEM_DEFAULT' ,sys.maxsize)
+# Random amount
 AMOUNT = 50000
+#Constant
 TWELVE = 12
 
 #Creates processor instance
