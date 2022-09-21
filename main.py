@@ -8,8 +8,6 @@ from datetime import *
 # I assumed that the system itself has a bank account, for managing all the accounts debits.
   
 first_day = datetime.today()
-next_week_date = first_day + timedelta(days=6)
-next_day_date = first_day + timedelta(days=1)
 transactions = []
 system_account = Account('SYSTEM_DEFAULT' ,sys.maxsize)
 # Random amount
@@ -23,8 +21,10 @@ processor = Processor(transactions)
 
 def perform_advance(dst_account,amount):
     week = 0
-    day = 0
     processor.perform_transaction(system_account,dst_account,amount,'Credit')
+    next_day_date = first_day + timedelta(days=1)
+    next_week_date = first_day + timedelta(days=6)
+
     while week <= 12:
         if next_day_date == datetime.today():
 
@@ -58,9 +58,9 @@ def perform_advance(dst_account,amount):
 # #Testing The Download Report....
 # #Please notice the excel sheet that created in the directory folder.
 # processor.download_report()
-#
-#
-# #Testing the perform_advance function
+
+
+#Testing the perform_advance function
 # perform_advance(account1,amount1)
 #################################################### TESTING ZONE ####################################################
 
