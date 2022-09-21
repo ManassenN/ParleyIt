@@ -35,9 +35,10 @@ def perform_advance(dst_account,amount):
                     twelveth_of_the_amount = amount/TWELVE
                     processor.perform_transaction(dst_account,system_account,twelveth_of_the_amount,"Debit")
                     week = week + 1
-            else:
-                processor.download_report()
-                next_day_date = datetime.today() + timedelta(days=1)
+
+            #Download daily report
+            processor.download_report()
+            next_day_date = datetime.today() + timedelta(days=1)
 
 #################################################### TESTING ZONE ####################################################
 
