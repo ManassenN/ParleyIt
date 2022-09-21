@@ -18,22 +18,15 @@ processor = Processor(transactions)
 
 def perform_advance(dst_account,amount):
     week = 0
-    account = Account(dst_account,amount)
-    direction = input("Credit or Debit? ")
-    if direction != "Credit" and direction != "Debit":
-        raise ValueError("Please try to run the program again without typos")
-        quit(1)
-    else:
-        processor.perform_transaction(system_account,dst_account,amount,direction)
-
-        while week <= 12:
-            if next_week_date == datetime.today():
+    processor.perform_transaction(system_account,dst_account,amount,'Credit')
+    while week <= 12:
+        if next_week_date == datetime.today():
                 # Testing if the transaction is valid, if not ,the debit will be attached to the week after the last
                 # week payment by not incrementing the successful week payment
-                if processor.check_if_valid():
-                    twelveth_of_the_amount = amount/TWELVE
-                    processor.perform_transaction(account,system_account,twelveth_of_the_amount,direction)
-                    week = week + 1
+            if processor.check_if_valid():
+                twelveth_of_the_amount = amount/TWELVE
+                processor.perform_transaction(dst_account,system_account,twelveth_of_the_amount,"Debit")
+                week = week + 1
 
 
 #################################################### TESTING ZONE ####################################################
@@ -48,7 +41,7 @@ def perform_advance(dst_account,amount):
 #     account1 = Account(num1,amount1)
 #     account2 = Account(num1, amount2)
 #
-#     processor.perform_transaction(account1,account2,AMOUNT,'direct')
+#     processor.perform_transaction(account1,account2,AMOUNT,'Debit')
 #
 #
 # #Testing The Download Report....
