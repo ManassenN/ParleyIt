@@ -27,7 +27,6 @@ def perform_advance(dst_account,amount):
 
     while week <= 12:
         if next_day_date == datetime.today():
-
             if next_week_date == datetime.today():
                     # Testing if the transaction is valid, if not ,the debit will be attached to the week after the last
                     # week payment by not incrementing the successful week payment
