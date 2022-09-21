@@ -15,7 +15,7 @@ class Processor():
             return 1
 
     def perform_transaction(self,src_bank_account,dst_bank_account,amount,direction):
-        # Generates a random number between 0 - 10
+        # Generates a random number between 0 - 10 , with 10 digits number
         transaction_id = ''.join(["{}".format(random.randint(0, 9)) for num in range(0, 10)])
 
         #Creates a new transaction
@@ -43,7 +43,7 @@ class Processor():
         return transaction_id
 
 
-    # downloads the transactions info report from the last 5 days
+    # Downloads the transactions info report from the last 5 days
     def download_report(self):
         today_day_date =int(datetime.now().strftime("%d"))
         valid_transactions = []
