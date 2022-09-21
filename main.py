@@ -9,6 +9,7 @@ from datetime import *
   
 first_day = datetime.today()
 next_week_date = first_day + timedelta(days=6)
+next_day_date = first_day + timedelta(days=1)
 transactions = []
 system_account = Account('SYSTEM_DEFAULT' ,sys.maxsize)
 # Random amount
@@ -22,16 +23,21 @@ processor = Processor(transactions)
 
 def perform_advance(dst_account,amount):
     week = 0
+    day = 0
     processor.perform_transaction(system_account,dst_account,amount,'Credit')
     while week <= 12:
-        if next_week_date == datetime.today():
-                # Testing if the transaction is valid, if not ,the debit will be attached to the week after the last
-                # week payment by not incrementing the successful week payment
-            if processor.check_if_valid():
-                twelveth_of_the_amount = amount/TWELVE
-                processor.perform_transaction(dst_account,system_account,twelveth_of_the_amount,"Debit")
-                week = week + 1
+        if next_day_date == datetime.today():
 
+            if next_week_date == datetime.today():
+                    # Testing if the transaction is valid, if not ,the debit will be attached to the week after the last
+                    # week payment by not incrementing the successful week payment
+                if processor.check_if_valid():
+                    twelveth_of_the_amount = amount/TWELVE
+                    processor.perform_transaction(dst_account,system_account,twelveth_of_the_amount,"Debit")
+                    week = week + 1
+            else:
+                processor.download_report()
+                next_day_date = datetime.today() + timedelta(days=1)
 
 #################################################### TESTING ZONE ####################################################
 
